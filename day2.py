@@ -15,17 +15,19 @@ if __name__ == "__main__":
   passwords = read_input()
 
   part_one_valid_passwords = 0
-  part_two_valid_password = 0
+  part_two_valid_passwords = 0
   for password_template in passwords:
     a, b, letter, password = parse_password_template(password_template)
     
     # part 1 
+
     if int(a) <= password.count(letter) <= int(b):
       part_one_valid_passwords += 1
     
     # part 2
+
     if (password[int(a)-1] == letter) ^ (password[int(b)-1] == letter):
-      part_two_valid_password +=1
+      part_two_valid_passwords +=1
 
   print(part_one_valid_passwords)
-  print(part_two_valid_password)
+  print(part_two_valid_passwords)
