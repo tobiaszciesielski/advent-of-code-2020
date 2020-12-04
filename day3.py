@@ -1,40 +1,38 @@
-'D:\Programy\python 3.9\python'
 
-print("Advent of Code - day 3")
-
-with open("./input/day3.txt", "r") as file: 
-  area = file.read().splitlines()
-
-area_size = len(area[0]), len(area)
-x, y = 0, 0
-tree = '#'
-trees = 0
-
-while y < area_size[1]: 
-  encountered = area[y][x % area_size[0]]
-  if encountered == tree: trees+=1
-  x+=3
-  y+=1 
-
-print(trees)
-
-# part 2 
+def read_input(): 
+  with open("./input/day3.txt", "r") as file: 
+    return file.read().splitlines()
 
 def makeStep(x, y, step):
   x+=step[0]
   y+=step[1]
   return x, y 
 
-trees_mul = 1
-steps = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
+def count_collisions(area, steps):
+  TREE = '#'
+  area_size = len(area[0]), len(area)
+  collisions_multiplication = 1
+  for step in steps:
+    x, y = 0, 0 # starting position
+    collisions = 0
+    while y < area_size[1]: 
+      encountered = area[y][x % area_size[0]]
+      if encountered == TREE: 
+        collisions+=1
+      x, y = makeStep(x, y, step)
+    collisions_multiplication*=collisions
+  return collisions_multiplication
 
-for i in range(len(steps)):
-  x, y = 0, 0 # reset
-  trees = 0
-  while y < area_size[1]: 
-    encountered = area[y][x % area_size[0]]
-    if encountered == tree: trees+=1
-    x, y = makeStep(x, y, steps[i])
-  trees_mul*=trees
+if __name__ == "__main__":   
+  print("Advent of Code - day 3")
 
-print(trees_mul)
+  area = read_input()
+
+  # part 1
+
+  print(count_collisions(area, [(3, 1)]))
+
+  # part 2 
+
+  steps = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
+  print(count_collisions(area, steps))

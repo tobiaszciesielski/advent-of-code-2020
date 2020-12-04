@@ -1,4 +1,8 @@
 
+def read_input():
+  with open("./input/day1.txt", mode="r") as file: 
+    return [int(line) for line in file.read().splitlines()]
+
 def get_two_numbers():
   for i in range(len(numbers)): 
     for j in range(len(numbers)):
@@ -15,8 +19,7 @@ def get_three_numbers():
 if __name__ == "__main__":
   print("Advent of Code - day 1")
 
-  with open("./input/day1.txt", mode="r") as file: 
-    numbers = [int(line) for line in file.read().splitlines()]
+  numbers = read_input()
 
   # part 1
 

@@ -1,4 +1,8 @@
 
+def read_input():
+  with open("./input/day2.txt", "r") as file:
+    return [line.split() for line in file.read().splitlines()]
+
 def parse_password_template(pwd):
   a, b = pwd[0].split('-')
   letter = pwd[1][0]
@@ -8,8 +12,7 @@ def parse_password_template(pwd):
 if __name__ == "__main__":
   print("Advent of Code - day 2")
 
-  with open("./input/day2.txt", "r") as file:
-    passwords = [line.split() for line in file.read().splitlines()]
+  passwords = read_input()
 
   part_one_valid_passwords = 0
   part_two_valid_password = 0
