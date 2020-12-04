@@ -55,6 +55,7 @@ def validate_flieds_value(document, schema):
   return True
 
 if __name__ == "__main__":  
+  
   documents_to_scan = read_input()
 
   validation_schema = {
