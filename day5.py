@@ -33,8 +33,13 @@ if __name__ == "__main__":
 
   # part 1
 
-  print(max([count_position_id(seat_code) for seat_code in seat_codes]))
-  
+  seat_ids = [count_position_id(seat_code) for seat_code in seat_codes]
+  print(max(seat_ids))
+
   # part 2
 
-  # code ...
+  seat_ids.sort()
+  for i in range(len(seat_ids)-1):
+    if seat_ids[i+1] - seat_ids[i] > 1:
+      print(seat_ids[i]+1)
+
