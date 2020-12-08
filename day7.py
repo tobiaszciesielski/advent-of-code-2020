@@ -21,7 +21,7 @@ def find_bags_containing_target(bags, target_bag, parents=set()):
   return parents
 
 if __name__ == "__main__":  
-  print("Advent of Code - day 7") # change day counter
+  print("Advent of Code - day 7")
 
   luggages = read_input()
 
