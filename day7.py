@@ -7,21 +7,17 @@ def get_bag_name(words):
   name = words.pop(0) + " " + words.pop(0)
   return name
 
-  # light red       {'bright white': '1', 'muted yellow': '2'}
-  # dark orange     {'bright white': '3', 'muted yellow': '4'}
-  # bright white    {'shiny gold': '1'}
-  # muted yellow    {'shiny gold': '2', 'faded blue': '9'}
-  # shiny gold      {'dark olive': '1', 'vibrant plum': '2'}
-  # dark olive      {'faded blue': '3', 'dotted black': '4'}
-  # vibrant plum    {'faded blue': '5', 'dotted black': '6'}
-  # faded blue      {}
-  # dotted black    {}
+def count_all_bags_inside_target(bags, target_bag):
+  count = 1
+  for key, number in bags[target_bag].items():
+    count += int(number) * count_all_bags_inside_target(bags, key)
+  return count
 
-def find_bags_containing_target(container, target_bag, parents=set()):
-  for key, value in container.items():
-    if target_bag in container[key].keys():
+def find_bags_containing_target(bags, target_bag, parents=set()):
+  for key, value in bags.items():
+    if target_bag in bags[key].keys():
       parents.add(key)
-      find_bags_containing_target(container, key, parents)
+      find_bags_containing_target(bags, key, parents)
   return parents
 
 if __name__ == "__main__":  
@@ -48,6 +44,4 @@ if __name__ == "__main__":
 
   # part 2
 
-  # code ...
-
-
+  print(count_all_bags_inside_target(luggage_relations, target_bag)-1)
