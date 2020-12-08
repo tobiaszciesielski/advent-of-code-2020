@@ -9,6 +9,24 @@ def read_input():
       program.append([op, int(val), False])
     return program
 
+def execute(program):
+  current_line = 0
+  global_value = 0
+  terminates = True
+  while current_line < len(program):
+    op, val, was_executed = program[current_line]
+    if was_executed: 
+      terminates = False
+      return global_value, terminates
+    program[current_line][2] = True # was_executed to True
+    if op == 'jmp':
+      current_line+=val
+      continue
+    elif op == 'acc':
+      global_value+=val
+    current_line+=1
+  return global_value, terminates 
+
 if __name__ == "__main__":  
   print("Advent of Code - day8")
 
@@ -16,21 +34,7 @@ if __name__ == "__main__":
 
   # part 1
   
-  boot_code = deepcopy(program)
-  current_line = 0
-  global_value = 0
-  while current_line < len(boot_code):
-    op, val, was_executed = boot_code[current_line]
-    if was_executed: break
-    boot_code[current_line][2] = True # was_executed to True
-    if op == 'jmp':
-      current_line+=val
-      continue
-    elif op == 'acc':
-      global_value+=val
-    current_line+=1
-
-  print(global_value)
+  print(execute(deepcopy(program))[0])
   
   # part 2
 
@@ -43,23 +47,9 @@ if __name__ == "__main__":
       boot_code[i][0] = 'nop' if operation == 'jmp' else 'jmp'
     else: continue
 
-    current_line = 0
-    global_value = 0
-    terminates = True
-    while current_line < len(boot_code):
-      op, val, was_executed = boot_code[current_line]
-      if was_executed: 
-        terminates = False
-        break
-      boot_code[current_line][2] = True # was_executed to True
-      if op == 'jmp':
-        current_line+=val
-        continue
-      elif op == 'acc':
-        global_value+=val
-      current_line+=1
+    value, terminate_flag = execute(boot_code)
     
-    if terminates:
+    if terminate_flag:
       break
 
-  print(global_value)
+  print(value)
