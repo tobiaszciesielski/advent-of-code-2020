@@ -38,7 +38,6 @@ if __name__ == "__main__":
   
   # part 2
 
-
   for i in range(len(program)):
     boot_code = deepcopy(program) # 
     
