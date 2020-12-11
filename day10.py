@@ -16,11 +16,10 @@ if __name__ == "__main__":
   three = 0
   one = 0
   for i in range(len(adapters)):
-    adapters[i]+1
-    next_three = adapters[i+1:i+4]
-    if adapters[i]+1 in next_three:
+    current, next_three = adapters[i], adapters[i+1:i+4]
+    if current+1 in next_three:
       one+=1
-    elif adapters[i]+3 in next_three:
+    elif current+3 in next_three:
       three +=1
   
   print(one * three)    
