@@ -1,16 +1,16 @@
+from collections import defaultdict
 
 def read_input():
   with open("./input/day10.txt") as file:
-    return [int(num) for num in file.read().splitlines()]
+    return sorted(int(num) for num in file.readlines())
 
 if __name__ == "__main__":  
   print("Advent of Code - day 10")
 
   adapters = read_input()
-  adapters.sort()
-  adapters.append((adapters[-1]+3))
+  max_joltage = (adapters[-1]+3)
+  adapters.append(max_joltage)
   adapters.insert(0, 0)
-  
   # part 1
 
   three = 0
@@ -21,9 +21,18 @@ if __name__ == "__main__":
       one+=1
     elif current+3 in next_three:
       three +=1
-  
+    
   print(one * three)    
 
   # part 2
 
-  # code ...
+  paths = defaultdict(int)
+  paths[0] = 1
+
+  for adapter in sorted(adapters):
+      for diff in range(1, 4):
+          next_adapter = adapter + diff
+          if next_adapter in adapters:
+              paths[next_adapter] += paths[adapter]
+ 
+  print(paths[max_joltage])
