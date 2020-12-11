@@ -11,6 +11,7 @@ if __name__ == "__main__":
   max_joltage = (adapters[-1]+3)
   adapters.append(max_joltage)
   adapters.insert(0, 0)
+  
   # part 1
 
   three = 0
