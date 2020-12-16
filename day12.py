@@ -17,12 +17,11 @@ if __name__ == "__main__":
   actions = read_input()
 
   # part 1
+  
   directions = ['W', 'N', 'E', 'S']
   current_directon = 2 # East
   
-  position = {}
-  for d in directions:
-    position[d] = 0
+  position = {d:0 for d in directions}
 
   for action in actions:
     direction, value = action
@@ -41,9 +40,19 @@ if __name__ == "__main__":
       current_directon -= int(value/90)
       current_directon %= len(directions)
 
-
   print(abs(position['E'] - position['W']) + abs(position['S'] - position['N']))
   
   # part 2
 
-  # code ...
+  directions = ['W', 'N', 'E', 'S']
+  current_directon = 2 # East
+  
+  position = {d:0 for d in directions}
+  waypoint = 
+
+  for action in actions:
+    direction, value = action
+
+
+  print(abs(position['E'] - position['W']) + abs(position['S'] - position['N']))
+  
